@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     
 }
 
-.white-background{    
+.white-form{    
     -fx-background-color: #fff;
 }
 
@@ -31,6 +31,29 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .login-btn:hover{
-    -fx-background-color: linear-gradient(to bottom right, #043133, #18c8d4 )
+    -fx-background-color: linear-gradient(to bottom right, #043133, #18c8d4 )   
+}
+
+.textfield{
+   -fx-background-color: transparent;
+   -fx-border-color: linear-gradient(to bottom right,  #174a81, #177780);
+   -fx-border-width: .5px;
+}
+
+.textfield:focused{
+    -fx-border-width: 1px;
+}
+
+.create-btn{
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-text-fill: #fff;
+    -fx-border-color: #fff;
+    -fx-border-width: 1px;
+}
+
+.create-btn:hover{
+    -fx-background-color: #fff;
+    -fx-text-fill: #000;
     
 }
