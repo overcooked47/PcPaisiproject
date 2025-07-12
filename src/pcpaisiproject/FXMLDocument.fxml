@@ -38,7 +38,7 @@
                   <TextField fx:id="su_username" layoutX="40.0" layoutY="129.0" prefHeight="30.0" prefWidth="220.0" promptText="username" styleClass="textfield" stylesheets="@LoginDesign.css" />
                   <PasswordField fx:id="su_password" layoutX="40.0" layoutY="169.0" prefHeight="30.0" prefWidth="220.0" promptText="password" styleClass="textfield" stylesheets="@LoginDesign.css" />
                   <TextField fx:id="su_answer" layoutX="40.0" layoutY="257.0" prefHeight="30.0" prefWidth="220.0" promptText="Answer" styleClass="textfield" stylesheets="@LoginDesign.css" />
-                  <Button fx:id="su_signupBtn" layoutX="40.0" layoutY="334.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@LoginDesign.css" text="Sign up" textFill="#043133" />
+                  <Button fx:id="su_signupBtn" layoutX="40.0" layoutY="334.0" mnemonicParsing="false" onAction="#regBtn" prefHeight="40.0" prefWidth="220.0" styleClass="login-btn" stylesheets="@LoginDesign.css" text="Sign up" textFill="#043133" />
                   <ComboBox fx:id="su_question" layoutX="40.0" layoutY="211.0" prefHeight="30.0" prefWidth="220.0" promptText="Question" />
                </children>
             </AnchorPane>
