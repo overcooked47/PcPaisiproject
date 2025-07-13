@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javafx.util.Duration;
 import java.util.ResourceBundle;
@@ -71,24 +72,44 @@ public class FXMLDocumentController implements Initializable {
         alert.setContentText("Please fill all blank fields");
         alert.showAndWait();
     }else{
-    String regData = "INSERT INTO employee (username, password, question, answer)" + "VALUE(?,?,?,?)";
+    String regData = "INSERT INTO employee (username, password, question, answer, date)" + "VALUE(?,?,?,?,?)";
     
     Connect = database.ConnectDB();
     try{
+        
+        String checkUsername = "SELECT username FROM employee WHERE username = '" + su_username.getText() + "'";
+       prepare = Connect.prepareStatement(checkUsername);
+       result = prepare.executeQuery();
+       
+       if(result.next()){
+        alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText(su_username.getText() + " is already taken");
+        alert.showAndWait();
+       }else if(su_password.getText().length() < 8){
+        alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Invalid password, at least 8 characters are required.");
+        alert.showAndWait();
+       }else{
         prepare = Connect.prepareStatement(regData);
         prepare.setString(1, su_username.getText());
         prepare.setString(2, su_password.getText());
         prepare.setString(3, (String)su_question.getSelectionModel().getSelectedItem());
         prepare.setString(4, su_answer.getText());
-        prepare.executeUpdate();
         
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+        prepare.setString(5, String.valueOf(sqlDate));
+        prepare.executeUpdate();
         
         alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Information Message");
         alert.setHeaderText(null);
         alert.setContentText("Successfully registered Account!");
         alert.showAndWait();
-        
         
         su_username.setText("");
         su_password.setText("");
@@ -106,8 +127,8 @@ public class FXMLDocumentController implements Initializable {
              side_CreateBtn.setVisible(true);
                     });
                     slider.play();
-
-    
+       }
+                    
     }catch(Exception e){
       e.printStackTrace();
         
