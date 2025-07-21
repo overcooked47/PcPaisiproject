@@ -24,6 +24,10 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 
 public class FXMLDocumentController implements Initializable {
     
@@ -129,11 +133,29 @@ public class FXMLDocumentController implements Initializable {
                 
                 result = prepare.executeQuery();
                 if (result.next()) {
+                    data.username = si_username.getText();
+                    
                     alert = new Alert(AlertType.INFORMATION);
                     alert.setTitle("Information Message");
                     alert.setHeaderText(null);
                     alert.setContentText("Successfully Login!");
                     alert.showAndWait();   
+                    
+                    Parent root = FXMLLoader.load(getClass().getResource("mainForm.fxml"));
+                    
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root);
+                    
+                    stage.setTitle("PC Paisi");
+                    stage.setMinWidth(1100);
+                    stage.setMinHeight(600);
+                    
+                    stage.setScene(scene);
+                    stage.show();
+                    
+                    si_loginBtn.getScene().getWindow().hide();
+                    
+                    
                 } else {
                     alert = new Alert(AlertType.ERROR);
                     alert.setTitle("Error Message");
